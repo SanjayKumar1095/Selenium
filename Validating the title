@@ -1,0 +1,29 @@
+//the below code is to validate the title of the webpage
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class DemoTest {
+public static void main(String[] args) {
+	
+	System.setProperty("webdriver.gecko.driver","E:\\selenium\\geckodriver-v0.21.0-win64\\geckodriver.exe");
+	WebDriver o = new FirefoxDriver();
+    String s = "https://demo.opencart.com/";
+    o.get(s);
+    String s2 = o.getCurrentUrl();
+    System.out.println(o.getTitle());
+    
+    if(s.equals(s2)){
+    	System.out.println("---->success");
+    }
+    else{
+    	System.out.println("error");
+    	System.out.println("expected ---->"+s );
+    	System.out.println("obtained ---->"+s2);
+    }
+    System.out.println("-------------------------------------------");
+	
+	o.close();
+}
+}
