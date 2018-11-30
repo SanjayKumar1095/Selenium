@@ -1,0 +1,24 @@
+// the below given program is used to select a date from calender
+// java scripts are used in this program.
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Jscript {
+public static void main(String [] args){
+	System.setProperty("webdriver.chrome.driver", "E:\\selenium\\chromedriver.exe");
+	WebDriver o = new ChromeDriver();
+	o.get("https://www.spicejet.com/");
+	o.manage().window().maximize();
+	
+	
+	JavascriptExecutor js=(JavascriptExecutor)o;
+	
+	js.executeScript("document.getElementById('ctl00_mainContent_view_date1').value='12/18';");
+	
+	js.executeScript("window.scrollBy(0,1000)");	
+	
+	
+}
+}
