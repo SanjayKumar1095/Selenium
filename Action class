@@ -1,0 +1,44 @@
+// the below given code is for handling mouse and keyboard events in browser
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.sun.corba.se.spi.orbutil.fsm.Action;
+
+
+public class ActionDemo {
+
+public static void main(String [] args){
+
+System.setProperty("webdriver.chrome.driver", "E:\\selenium\\chromedriver.exe");
+
+  WebDriver o = new ChromeDriver();
+	o.get("http://toolsqa.com/");
+
+  o.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	o.manage().window().maximize();
+
+  WebElement el= o.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]"));
+
+  Actions act = new Actions(o);
+
+  act.moveToElement(el).build().perform();   //to rover the cursor
+	act.contextClick().build().perform();  //to perform right click
+	act.doubleClick().build().perform();  // to perform double click
+	act.keyDown(Keys.CONTROL).sendKeys("a").build().perform(); //to perform ctrl+A action
+	System.out.println(o.findElement(By.xpath("/html/body/div[1]/div[1]/header/nav/ul/li[2]")).getText());
+	act.click(); 
+	
+}
+}
+
