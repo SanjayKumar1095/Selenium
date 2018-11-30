@@ -1,0 +1,48 @@
+//the below given code is to read and write data from excel sheets.
+//to perform this, you need to have apache poi API 
+//you can get this from apache.org
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+public class ExcelDemo_1 {
+
+	public static void main(String[] args) throws Exception  {
+		
+		File f = new File("E:\\excel\\MyPro1.xlsx");
+
+		FileInputStream fs = new FileInputStream(f);
+	 
+		
+		XSSFWorkbook wb = new XSSFWorkbook(fs);
+	//		HSSFWorkbook hb = new HSSFWorkbook(fs); 
+		XSSFSheet ws = wb.getSheet("Sheet1");
+	    String s = ws.getRow(0).getCell(0).getStringCellValue();
+	    System.out.println(s);
+	    
+	    System.out.println(ws.getLastRowNum());
+	  
+      for(int i=0;i<ws.getLastRowNum();i++){
+	    String s1 = ws.getRow(i).getCell(0).getStringCellValue();
+	    String s2 = ws.getRow(i).getCell(1).getStringCellValue();
+	    System.out.println(s1 +" ---- " +s2);
+	    
+	    }
+	    
+	    ws.getRow(0).createCell(7).setCellValue("your text is here");
+	     
+	    FileOutputStream fo = new FileOutputStream(f);
+	     
+	    wb.write(fo);
+	    
+	    wb.close();	    
+	}
+}
