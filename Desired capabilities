@@ -1,0 +1,27 @@
+// Desired capabilities is a class in Selenium to adjust the setting of the browser
+// mostly used in Selenium grid
+// can be used to get the info about the browser for further execution
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+
+
+public class Gmail {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.gecko.driver","E:\\selenium\\geckodriver-v0.21.0-win64\\geckodriver.exe");
+
+        FirefoxOptions op = new FirefoxOptions(); //the older way of passing the object to constructor is depricated. use FirefoxOptions class
+        op.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+
+		// Suppress logs with warning - Super troubleshooting				
+		WebDriver o = new FirefoxDriver(op);
+		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");	
+		o.get("https://in.yahoo.com/");
+		o.findElement(By.cssSelector("#uh-signin")).click();
+}
+}
