@@ -1,0 +1,47 @@
+// as soon as the the object for the firefox driver or any other is instansiated, the selenium will generate an alpha numeric code called window handles
+// all the tabs in the browser will be considered as windows by Selenium WebDriver
+
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+
+public class Window_handleDemo {
+
+	public static void main(String[] args) {
+		
+		
+		System.setProperty("webdriver.gecko.driver","E:\\selenium\\geckodriver-v0.21.0-win64\\geckodriver.exe");
+		WebDriver o = new FirefoxDriver();
+	
+		o.get("http://toolsqa.com/automation-practice-switch-windows/");
+		o.manage().window().maximize();
+    	WebElement web = o.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div/div/p[4]/button"));
+		
+	  
+	    o.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div/div/p[4]/button")).click();
+	
+	    	Set<String> window = o.getWindowHandles();
+	    	
+	    	Iterator <String> itr = window.iterator();
+	    	
+	
+	    	String window1 = itr.next();
+//	o.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	    	String window2 = itr.next();
+	   	o.switchTo().window(window2);
+	   	o.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	o.close();
+	
+	
+
+	}
+
+}
+
