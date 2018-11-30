@@ -1,0 +1,47 @@
+//the below code is to check for the broken links in a webpage
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+
+
+public class BrokenLinks {
+
+	public static void main(String[] args) throws MalformedURLException, IOException {
+int count = 1;
+		System.setProperty("webdriver.gecko.driver","E:\\\\selenium\\geckodriver-v0.21.0-win64\\geckodriver.exe");
+		WebDriver obj = new FirefoxDriver();
+		obj.manage().window().maximize();
+		obj.get("http://toolsqa.com/automation-practice-form/");
+
+		List<WebElement> link = obj.findElements(By.tagName("a"));
+		List<WebElement> actLink = new ArrayList<WebElement>() ;
+
+		for(WebElement a : link){
+			System.out.println(count++ +" "+a.getAttribute("href"));
+			if(a.getAttribute("href") != null){
+				actLink.add(a);
+			}
+
+		}
+		for(WebElement demo : actLink){
+			
+			
+			HttpURLConnection con = (HttpURLConnection)new URL(demo.getAttribute("href")).openConnection();
+			con.connect();
+			System.out.println(demo.getAttribute("href")+"----result----->  "+con.getResponseMessage());
+			con.disconnect();
+		}
+	}
+
+}
