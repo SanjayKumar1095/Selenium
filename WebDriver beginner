@@ -1,0 +1,35 @@
+// below given is a beginner level code.
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class BookmyShow {
+	public static void main(String[] args) {
+		
+
+		System.setProperty("webdriver.gecko.driver","E:\\selenium\\geckodriver-v0.21.0-win64\\geckodriver.exe");  //initialises the driver
+    
+		// Suppress logs with warning - Super troubleshooting				
+		
+    WebDriver o = new FirefoxDriver(); //WebDriver is an Interface, that's why it is called using dynamic method dispatch
+		
+    System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");	
+	 
+   o.get("https://www.freecrm.com/index.html"); //to get to the concern webpage
+   
+	 o.findElement(By.xpath("/html/body/div[2]/div/div[3]/form/div/input[1]")).clear();  //clears away the present text or content
+	 o.findElement(By.xpath("/html/body/div[2]/div/div[3]/form/div/input[1]")).sendKeys("You're text"); //used to enter the text in textbox 
+	 o.findElement(By.xpath("/html/body/div[2]/div/div[3]/form/div/input[2]")).clear();
+	 o.findElement(By.xpath("/html/body/div[2]/div/div[3]/form/div/input[2]")).sendKeys("You're text");
+	 o.findElement(By.xpath("/html/body/div[2]/div/div[3]/form/div/div/input")).click();
+	 
+
+	// o.findElement(By.cssSelector(".mlddm > li:nth-child(2) > a:nth-child(1)")).click();
+//	 o.findElement(By.cssSelector(".mlddm > li:nth-child(2) > a:nth-child(1)")).click(); 
+	 
+	 
+	}
+
+}
