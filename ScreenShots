@@ -1,0 +1,45 @@
+//the below given program is to take screenshot of browser
+//we can not take screenshot in HtmlUnitDriver but we can overcome thos by using phanthom-js
+//Previously we were using FileUtils to copy the file, but now they are not available.
+//So we go for FileHandler class.
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+
+import com.sun.org.apache.bcel.internal.generic.F2L;
+
+
+public class FacebookDemo {
+public static void main(String [] args){
+
+	System.setProperty("webdriver.chrome.driver", "E:\\selenium\\chromedriver.exe");
+	WebDriver o = new ChromeDriver();
+	
+	o.get("http://www.ironspider.ca/forms/checkradio.htm");
+	o.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	o.manage().window().maximize();
+  
+  try{
+	 File f = ((TakesScreenshot)o).getScreenshotAs(OutputType.FILE);
+	FileHandler.copy(f,new File("E:\\screensot\\sanjay.jpg"));
+	
+	}
+	catch(Exception e){
+		e.printStackTrace();
+	}
+	finally{
+		System.out.println("finished");
+	}
+}
+}
