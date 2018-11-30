@@ -1,0 +1,26 @@
+// the following program is to invoke headless browser. 
+// a headless browser is a browser without any UI/UX.
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+
+
+public class HeadlessBrowser {
+
+	public static void main(String[] args) {
+		
+	
+		WebDriver o = new HtmlUnitDriver(true); //Selenium WebDriver doesn't support Java sctripts. to make it support, we need to pass a parameter as "true"
+		o.get("https://www.facebook.com/");
+		String title = "Facebook";
+		String actTitle = o.getTitle();
+		Assert.assertTrue(actTitle.contains(title));
+		System.out.println("true");
+		
+		
+	}
+
+}
