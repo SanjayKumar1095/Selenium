@@ -1,0 +1,34 @@
+//the alerts are pop ups that appear on a webpage.
+// there are 3 types - simple, prompt and conformation alerts.
+// we can use switch method to switch to the concernd alert.
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class PromptDemo {
+	public static void main(String[] args){
+		
+		
+		System.setProperty("webdriver.chrome.driver", "E:\\selenium\\chromedriver.exe");
+		
+		WebDriver o = new ChromeDriver();
+		
+		String d = "http://toolsqa.com/handling-alerts-using-selenium-webdriver/";
+		o.get(d);
+//		o.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div/div/p[4]/button")).click();
+//		o.switchTo().alert().accept();
+		//===================================end of simple alert=====================//
+	System.out.println(o.getTitle());
+
+		o.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div/div/p[8]/button")).click();
+		
+		o.switchTo().alert().accept();
+//		o.switchTo().alert().dismiss();
+		
+//=====================================end of conformation alert===========================//		
+
+// in addition to this, we can use getText() method and sendKeys() method for prompt alert
+}
+}
