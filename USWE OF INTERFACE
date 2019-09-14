@@ -1,0 +1,50 @@
+interface CarNames{
+	public void dispname(String car_name);
+	
+}
+interface BikeNames{
+	public void dispname(String bike_name);
+}
+
+
+class ClassWithoutInterface implements CarNames,BikeNames {
+	String car_name;
+	ClassWithoutInterface(String car_name){
+		this.car_name = car_name;
+	}
+@Override
+public void dispname(String car_name) {
+	String s = "vroom";
+	String b = "halt";
+	if(car_name.equals(this.car_name)){
+		System.out.println(s);	
+	}else{
+		System.out.println(b);
+	}
+		
+}
+}
+
+class CallAll extends ClassWithoutInterface {
+
+	CallAll(String car_name) {
+		super(car_name);
+		
+	}
+	public void methodCalling(){
+		dispname("Honda Dio");
+	}
+}
+public class ClassWithInterface extends CallAll {
+	
+ClassWithInterface(String car_name) {
+		super(car_name);
+		// TODO Auto-generated constructor stub
+	}
+
+public static void main(String argd[]) {
+	
+	CallAll c = new CallAll("Honda Dio");
+	c.methodCalling();
+}
+}
